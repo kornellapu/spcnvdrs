@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        /* Center the canvas */
+        body, html {
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        canvas {
+            border: 1px solid lime;
+            cursor: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div style="vertical-align:middle">
+    <canvas id="canvas" width="960" height="540">
+        Your browser does not support the HTML canvas tag.
+    </canvas>
+</div>
+
+<script type="module" src="main.js"></script> 
+<script type="module" src="modules/gameobject.js"></script> 
+<script type="module" src="modules/sprite.js"></script> 
+
+</body>
+</html>

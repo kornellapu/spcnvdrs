@@ -18,13 +18,13 @@ class Sprite extends GameObject{
 
     draw(context) { 
         if(this.visible){
-            context.drawImage(this.image, Math.round(this.x), Math.round(this.y), this.image.width, this.image.height);
+            context.drawImage(this.image, Math.round(this.position.x), Math.round(this.position.y), this.image.width, this.image.height);
         }
     }
 
-    setMiddle(x, y){
-        this.x = x - this.image.width/2;
-        this.y = y - this.image.height/2;
+    setMiddle(position){
+        this.position.x = position.x - this.image.width/2;
+        this.position.y = position.y - this.image.height/2;
     }
 }
 

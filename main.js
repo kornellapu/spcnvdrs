@@ -1,4 +1,6 @@
+import { Enemy } from "./modules/enemy.js";
 import { Ship } from "./modules/ship.js";
+import { Vector2D } from "./modules/vector2d.js";
 
 const FRAMERATE = 60.0;
 const FRAMETIME = 1000.0 / FRAMERATE; //ms
@@ -8,10 +10,10 @@ const ctx = canvas.getContext("2d");
 
 let lastRenderTime = new Date().getMilliseconds();
 
-let mouseX = canvas.width/2;
-let mouseY = canvas.height/2;
+let mouse = new Vector2D(canvas.width/2, canvas.height/2);
 
 const ship = new Ship();
+const enemy = new Enemy("./res/enemy.png");
 
 window.onload = function () {
     init();
@@ -24,15 +26,15 @@ function init(){
 
 function mouseMoveHandler(event){
     const canvasRect = canvas.getBoundingClientRect();
-    mouseX = Math.round(event.clientX - canvasRect.left);
-    mouseY = Math.round(event.clientY - canvasRect.top);
+    mouse.x = Math.round(event.clientX - canvasRect.left);
+    mouse.y = Math.round(event.clientY - canvasRect.top);
 }
 
 function renderCycle(){
     let currentTime = new Date().getMilliseconds();
     const deltaTime = currentTime - lastRenderTime;
 
-    ship.moveTo(mouseX, mouseY);
+    ship.moveTo(mouse);
 
     render(deltaTime);
 
@@ -47,4 +49,5 @@ function render(deltaTime){
     let distance = Math.abs(FRAMETIME - deltaTime);
 
     ship.draw(ctx);
+    enemy.draw(ctx);
 }

@@ -1,11 +1,12 @@
+import { Vector2D } from "./vector2d.js";
+
 class GameObject {
-    x = 0;
-    y = 0;
+    position = new Vector2D(0, 0)
     z = 0;
     
     constructor(x, y, z){
-        this.x = x;
-        this.y = y;
+        this.position.x = x;
+        this.position.y = y;
         this.z = z;
     }
 

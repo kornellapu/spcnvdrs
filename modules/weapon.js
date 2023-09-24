@@ -1,25 +1,19 @@
 import { Sprite } from "./sprite.js";
+import { lerp } from "./utility.js";
 
 class Weapon extends Sprite {
     maxDistance = 50;
+
+    handling = 8;   //normal range: [slow] 1 - 10 [tight]
+    handlingCoeff = 100;
 
     constructor(filePath){
         super(filePath);
     }
 
-    moveTo(x, y){
-        const xMid = Math.round(this.x + this.image.width/2);
-        const yMid = Math.round(this.y + this.image.height/2);
-
-        const xDiff = x - xMid;
-        const yDiff = y - yMid;
-
-        const distance = Math.sqrt( xDiff*xDiff + yDiff*yDiff );
-
-        const dRatio = Math.min( 1, distance/this.maxDistance );
-
-        this.x += dRatio * xDiff;
-        this.y += dRatio * yDiff;
+    moveTo(position){
+        this.position.x = lerp(this.position.x, position.x, this.handling/this.handlingCoeff);
+        this.position.y = lerp(this.position.y, position.y, this.handling/this.handlingCoeff);
     }
 }
 

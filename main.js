@@ -8,7 +8,7 @@ const FRAMETIME = 1000.0 / FRAMERATE; //ms
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
-let lastRenderTime = new Date().getMilliseconds();
+let lastRenderTime = Date.now();
 
 let mouse = new Vector2D(canvas.width/2, canvas.height/2);
 
@@ -31,15 +31,16 @@ function mouseMoveHandler(event){
 }
 
 function renderCycle(){
-    let currentTime = new Date().getMilliseconds();
+    let currentTime = Date.now();
     const deltaTime = currentTime - lastRenderTime;
 
     ship.moveTo(mouse);
+    enemy.move();
 
     render(deltaTime);
 
     setInterval(renderCycle, FRAMETIME, null);
-    lastRenderTime = new Date().getMilliseconds();
+    lastRenderTime = Date.now();
 }
 
 function render(deltaTime){
